@@ -91,14 +91,14 @@ class BSM():
         return delta
         
     def gamma(self):
-        gamma = norm.pdf(self.d1()) / (S*sigma* sqrt(T))
+        gamma = norm.pdf(self.d1()) / (self.S*self.sigma* sqrt(T))
         return gamma
 
     def theta(self):
         if self.option_type == 'call':
-            theta_calc = -S*norm.pdf(self.d1())*sigma/(2* sqrt(T)) - r*K* exp(-r*T)*norm.cdf(self.d2())
+            theta_calc = -self.S*norm.pdf(self.d1())*self.sigma/(2* sqrt(self.T)) - self.r*self.K* exp(-self.r*self.T)*norm.cdf(self.d2())
         elif self.option_type == 'put':
-            theta_calc = -S*norm.pdf(self.d1())*sigma/(2* sqrt(T)) + r*K* exp(-r*T)*norm.cdf(-self.d2())
+            theta_calc = -self.S*norm.pdf(self.d1())*self.sigma/(2* sqrt(self.T)) + self.r*self.K* exp(-self.r*self.T)*norm.cdf(-self.d2())
         else:
             raise ValueError('Invalid option type')
         
