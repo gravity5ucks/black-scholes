@@ -1,3 +1,4 @@
+# GRAVITY SUCKS
 # Valuation of European options in Black-Scholes-Merton model
 # and their relative greeks, and implied volatility estimator
 # in object-oriented programmed language
