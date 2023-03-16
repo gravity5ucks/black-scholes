@@ -91,7 +91,7 @@ class BSM():
         return delta
         
     def gamma(self):
-        gamma = norm.pdf(self.d1()) / (self.S*self.sigma* sqrt(T))
+        gamma = norm.pdf(self.d1()) / (self.S*self.sigma* sqrt(self.T))
         return gamma
 
     def theta(self):
