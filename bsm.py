@@ -114,4 +114,5 @@ class BSM():
         option = BSM(self.S, self.K, self.r, self.T, self.option_type, sigma_est)
         for i in range(it):
             option.sigma -= (option.price() - self.option_price) / (option.vega() * 100)
+        self.sigma = option.sigma
         return option.sigma
