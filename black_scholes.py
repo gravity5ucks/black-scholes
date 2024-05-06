@@ -94,7 +94,7 @@ class BlackScholes():
     
     def implied_volatility(self, sigma_est=0.5, it=100):
         self._ensure_price_initialized()
-        option = BSM(self.S, self.K, self.r, self.T, self.option_type, sigma_est)
+        option = BlackScholes(self.S, self.K, self.r, self.T, self.option_type, sigma_est)
         #Newton-Raphson
         for i in range(it):
             option.sigma -= (option.price() - self.option_price) / (option.vega() * 100)
