@@ -97,6 +97,6 @@ class BlackScholes():
         option = BlackScholes(self._S, self._K, self._r, self._T, self._option_type, sigma_est)
         #Newton-Raphson
         for i in range(it):
-            option.sigma -= (option.price() - self._option_price) / (option.vega() * 100)
-        self._sigma = option.sigma
-        return option.sigma
+            option._sigma -= (option.price() - self._option_price) / (option.vega() * 100)
+        self._sigma = option._sigma
+        return option._sigma
