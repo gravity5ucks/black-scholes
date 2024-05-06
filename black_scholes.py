@@ -16,6 +16,7 @@ class BlackScholes():
 
         User can alternatevely uses option_price or sigma as inputs.
         
+        
         '''
         if sigma == 0 and option_price == 0:
             raise ValueError('Sigma or option_price must be used to initialize the class')
