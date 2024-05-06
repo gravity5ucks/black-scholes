@@ -38,7 +38,7 @@ class BlackScholes():
 
     def d1(self):
         self._ensure_sigma_initialized()
-        d1 = (log(self._S/self._K) + (self.r + self._sigma**2/2)*self._T) / (self._sigma * sqrt(self._T))
+        d1 = (log(self._S/self._K) + (self._r + self._sigma**2/2)*self._T) / (self._sigma * sqrt(self._T))
         return d1
 
     def d2(self):
@@ -50,9 +50,9 @@ class BlackScholes():
     def price(self):
         self._ensure_sigma_initialized()
         if self._option_type == 'call':
-            price = self._S * norm.cdf(self.d1()) - self._K * exp(-self.r * self._T) * norm.cdf(self.d2())
+            price = self._S * norm.cdf(self.d1()) - self._K * exp(-self._r * self._T) * norm.cdf(self.d2())
         elif self._option_type == 'put':
-            price = self._K * exp(-self.r * self._T) * norm.cdf(-self.d2()) - self._S * norm.cdf(-self.d1())
+            price = self._K * exp(-self._r * self._T) * norm.cdf(-self.d2()) - self._S * norm.cdf(-self.d1())
         else:
             raise ValueError('Invalid option type')
         return price
@@ -72,9 +72,9 @@ class BlackScholes():
 
     def theta(self):
         if self._option_type == 'call':
-            theta_calc = -self._S*norm.pdf(self.d1())*self._sigma/(2* sqrt(self._T)) - self._r*self._K* exp(-self.r*self._T)*norm.cdf(self.d2())
+            theta_calc = -self._S*norm.pdf(self.d1())*self._sigma/(2* sqrt(self._T)) - self._r*self._K* exp(-self._r*self._T)*norm.cdf(self.d2())
         elif self._option_type == 'put':
-            theta_calc = -self._S*norm.pdf(self.d1())*self._sigma/(2* sqrt(self._T)) + self._r*self._K* exp(-self.r*self._T)*norm.cdf(-self.d2())
+            theta_calc = -self._S*norm.pdf(self.d1())*self._sigma/(2* sqrt(self._T)) + self._r*self._K* exp(-self._r*self._T)*norm.cdf(-self.d2())
         else:
             raise ValueError('Invalid option type')
         return theta_calc / 365
@@ -86,9 +86,9 @@ class BlackScholes():
     def rho(self):
         self._ensure_sigma_initialized()
         if self._option_type == 'call':
-            return self._K * self._T * exp(-self.r * self._T) * norm.cdf(self.d2()) /100
+            return self._K * self._T * exp(-self._r * self._T) * norm.cdf(self.d2()) /100
         elif self._option_type == 'put':
-            return -self._K * self._T * exp(-self.r * self._T) * norm.cdf(-self.d2()) /100
+            return -self._K * self._T * exp(-self._r * self._T) * norm.cdf(-self.d2()) /100
         else:
             raise ValueError('Invalid option type')
     
